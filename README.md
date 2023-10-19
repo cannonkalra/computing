@@ -22,3 +22,12 @@ This is aimed at uncovering all layers of software to hardware. Python to CPytho
 
 
 
+# Instructions
+
+
+All the binaries required to run the projects and chapters will be provided is docker images
+
+
+```bash
+# booting a qemu risc-v machine
+```
