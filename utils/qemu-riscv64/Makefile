@@ -10,15 +10,21 @@ SHELL := /bin/bash
 
 .DEFAULT_GOAL := target
 
-filename := resume
-tagname := 0.0.1
+NAME := qemu-riscv64
+TAGNAME := 0.0.1
 
-target: build
+target: all
 
-all: build 
+all: build run
 
 build:
-	docker build -t cannonkalra/qemu-riscv64 .
+	docker build -t cannonkalra/${NAME} .
+
+run:
+	docker run -it --rm --name ${NAME} cannonkalra/${NAME} bash  
+
+attach:
+	docker exec -it ${NAME} bash
 
 push: 
-	docker push cannonkalra/qemu-riscv64:${tagname}
+	docker push cannonkalra/${NAME}:${TAGNAME}

@@ -29,5 +29,16 @@ All the binaries required to run the projects and chapters will be provided is d
 
 
 ```bash
-# booting a qemu risc-v machine
+
 ```
+
+# TODO
+- [x] RISCV QEMU
+- [ ] Leaner Dockerfile
+
+
+# Resoruces
+
+### Blogs
+- [Twilco, RISC-V from scratch](https://twilco.github.io/riscv-from-scratch/2019/03/10/riscv-from-scratch-1.html)
+- [Matthias Totschnig Blog](https://mth.st/blog/riscv-qemu/)

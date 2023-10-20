@@ -1,14 +1,37 @@
-FROM ubuntu:22.04 as build
+FROM debian:12.2
 
-RUN apt-get update -y \
-  && apt-get -y install git make gcc python3 python3-pip pkg-config libglib2.0-dev libpixman-1-dev flex bison ninja-build \
-  && cd /tmp \
-  && git clone https://git.qemu.org/git/qemu.git \
-  && cd qemu \
-  && ./configure --prefix=/usr --static --disable-system --target-list=riscv64-linux-user \
-  && make -j 4 \
-  && make install DESTDIR=/tmp/install
+RUN apt-get update -y && apt-get -y install \
+  autoconf \
+  automake \
+  autotools-dev \
+  curl \
+  python3 \
+  python3-pip \
+  libmpc-dev \
+  libmpfr-dev libgmp-dev \
+  gawk \
+  build-essential \
+  bison \
+  flex \
+  texinfo \
+  gperf \
+  libtool \
+  patchutils \
+  bc \
+  zlib1g-dev \
+  libexpat-dev \
+  ninja-build \
+  git \
+  cmake \
+  libglib2.0-dev \
+  make \
+  gcc \
+  pkg-config \
+  libpixman-1-dev 
 
-FROM ubuntu:22.04
+RUN git clone https://git.qemu.org/git/qemu.git /tmp/qemu \
+  && cd /tmp/qemu \
+  && ./configure --prefix=/usr --disable-docs --target-list=riscv64-softmmu 
 
-COPY --from=build /tmp/install/usr/ /usr/
+RUN make -j 4 \
+  && make install
